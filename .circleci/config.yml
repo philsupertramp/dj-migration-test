@@ -7,9 +7,9 @@ jobs:
       - checkout
       - run:
           name: Setup Environment Variables
-          command: |
-            TAG=0.1.$CIRCLE_BUILD_NUM
-            DJ_VERSION=2.2.3
+          command:
+            echo 'export TAG=0.1.$CIRCLE_BUILD_NUM' >> $BASH_ENV
+            echo 'export DJ_VERSION=2.2.3' >> $BASH_ENV
       - run: |
           docker build -t dj-migration-test/example_proj:$TAG ./examples/example_proj/.
       - run: |
@@ -21,9 +21,9 @@ jobs:
       - checkout
       - run:
           name: Setup Environment Variables
-          command: |
-            TAG=0.1.$CIRCLE_BUILD_NUM
-            DJ_VERSION=2.1
+          command:
+            echo 'export TAG=0.1.$CIRCLE_BUILD_NUM' >> $BASH_ENV
+            echo 'export DJ_VERSION=2.1' >> $BASH_ENV
       - run: |
           docker build -t dj-migration-test/example_proj:$TAG ./examples/example_proj/.
       - run: |
@@ -36,8 +36,8 @@ jobs:
       - run:
           name: Setup Environment Variables
           command: |
-            TAG=0.1.$CIRCLE_BUILD_NUM
-            DJ_VERSION=2.0
+            echo 'export TAG=0.1.$CIRCLE_BUILD_NUM' >> $BASH_ENV
+            echo 'export DJ_VERSION=2.0' >> $BASH_ENV
       - run: |
           docker build -t dj-migration-test/example_proj:$TAG ./examples/example_proj/.
       - run: |
@@ -50,8 +50,8 @@ jobs:
       - run:
           name: Setup Environment Variables
           command: |
-            TAG=0.1.$CIRCLE_BUILD_NUM
-            DJ_VERSION=1.11
+            echo 'export TAG=0.1.$CIRCLE_BUILD_NUM' >> $BASH_ENV
+            echo 'export DJ_VERSION=1.11' >> $BASH_ENV
       - run: |
           docker build -t dj-migration-test/example_proj:$TAG ./examples/example_proj/.
       - run: |
@@ -64,14 +64,12 @@ jobs:
       - run:
           name: Setup Environment Variables
           command: |
-            TAG=0.1.$CIRCLE_BUILD_NUM
-            DJ_VERSION=1.10
+            echo 'export TAG=0.1.$CIRCLE_BUILD_NUM' >> $BASH_ENV
+            echo 'export DJ_VERSION=1.10' >> $BASH_ENV
       - run: |
           docker build -t dj-migration-test/example_proj:$TAG ./examples/example_proj/.
       - run: |
           docker run dj-migration-test/example_proj:$TAG python /code/manage.py test
-
-
 workflows:
   version: 2
   build_and_test:
