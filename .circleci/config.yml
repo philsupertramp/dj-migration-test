@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  build-v2.2:
     machine:
       docker_layer_caching: true
     steps:
@@ -12,7 +12,11 @@ jobs:
       - run: |
           TAG=0.1.$CIRCLE_BUILD_NUM
           docker run dj-migration-test/example_proj:$TAG python /code/manage.py test
-
+  build-v2.1:
+    machine:
+      docker_layer_caching: true
+    steps:
+      - checkout
       - run: |
           TAG=0.1.$CIRCLE_BUILD_NUM
           DJ_VERSION=2.1
@@ -20,7 +24,11 @@ jobs:
       - run: |
           TAG=0.1.$CIRCLE_BUILD_NUM
           docker run dj-migration-test/example_proj:$TAG python /code/manage.py test
-
+  build-v2.0:
+    machine:
+      docker_layer_caching: true
+    steps:
+      - checkout
       - run: |
           TAG=0.1.$CIRCLE_BUILD_NUM
           DJ_VERSION=2.0
@@ -28,7 +36,11 @@ jobs:
       - run: |
           TAG=0.1.$CIRCLE_BUILD_NUM
           docker run dj-migration-test/example_proj:$TAG python /code/manage.py test
-
+  build-v1.11:
+    machine:
+      docker_layer_caching: true
+    steps:
+      - checkout
       - run: |
           TAG=0.1.$CIRCLE_BUILD_NUM
           DJ_VERSION=1.11
@@ -36,7 +48,11 @@ jobs:
       - run: |
           TAG=0.1.$CIRCLE_BUILD_NUM
           docker run dj-migration-test/example_proj:$TAG python /code/manage.py test
-
+  build-v1.10:
+    machine:
+      docker_layer_caching: true
+    steps:
+      - checkout
       - run: |
           TAG=0.1.$CIRCLE_BUILD_NUM
           DJ_VERSION=1.10
@@ -44,3 +60,14 @@ jobs:
       - run: |
           TAG=0.1.$CIRCLE_BUILD_NUM
           docker run dj-migration-test/example_proj:$TAG python /code/manage.py test
+
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build-v1.10
+      - build-v1.11
+      - build-v2.0
+      - build-v2.1
+      - build-v2.2
