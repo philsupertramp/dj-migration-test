@@ -1,5 +1,6 @@
 FROM python:3
 ENV PYTHONUNBUFFERED 1
+ARG DJ_VERSION
 RUN mkdir /code
 COPY . /code
 WORKDIR /code
