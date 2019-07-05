@@ -64,3 +64,5 @@ workflows:
       - build-v2.0
       - build-v2.1
       - build-v2.2
+    filters:
+      only: master
