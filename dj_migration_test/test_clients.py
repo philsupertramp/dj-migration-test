@@ -3,7 +3,7 @@ from django.db import connection
 from django.db.migrations.executor import MigrationExecutor
 from django.test import TransactionTestCase
 
-from src.exceptions import AppNotFound
+from dj_migration_test.exceptions import AppNotFound
 
 
 class MigrationTestCase(TransactionTestCase):
