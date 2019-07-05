@@ -1,5 +1,28 @@
 version: 2
 jobs:
+  upload:
+    wokring_directory: ~/dj-migration-test-build
+    docker:
+      - image: circleci/python:3.7
+    steps:
+      - checkout
+      - run: sudo chown -R circleci:circleci /usr/local/bin
+      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.7/site-packages
+      - run:
+          name: Setup Environment Variables
+          command:
+            echo 'export TAG=v0.1.$CIRCLE_BUILD_NUM' >> $BASH_ENV
+      - run:
+          name: Build package
+          command: |
+            python setup.py sdist
+      - run:
+          name: Upload package
+          command: |
+            pip install twine
+            USERNAME=$(echo $PYPI_USR | base64 --decode)
+            PASSWORD=$(echo $PYPI_PW | base64 --decode)
+            twine upload dist/* -u $USERNAME -p $PASSWORD
   test:
     working_directory: ~/dj-migration-test
     docker:
@@ -93,3 +116,9 @@ workflows:
           filters:
             branches:
               only: master
+      - upload:
+          filters:
+            branches:
+              only: master
+          requires:
+            - test

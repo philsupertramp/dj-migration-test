@@ -5,8 +5,8 @@ import django
 from django.db import connection
 from django.test.utils import teardown_databases
 
-from src.exceptions import AppNotFound
-from src.test_clients import MigrationTestCase
+from dj_migration_test.exceptions import AppNotFound
+from dj_migration_test.test_clients import MigrationTestCase
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'tests.settings.test_settings'
 django.setup()
