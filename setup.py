@@ -1,3 +1,4 @@
+import os
 from distutils.core import setup
 
 with open('README', 'r') as fh:
@@ -6,7 +7,7 @@ with open('README', 'r') as fh:
 setup(
     name='dj-migration-test',
     packages=['dj_migration_test'],
-    version='0.1',
+    version=os.environ.get('TAG', 'v0.1a'),
     license='MIT',
     description='Django migration test module',
     long_description=long_description,
