@@ -1,4 +1,4 @@
-from test_clients import MigrationTestCase
+from dj_migration_test.test_clients import MigrationTestCase
 
 
 class TestAppMigration0001To0003TestCase(MigrationTestCase):
