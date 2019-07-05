@@ -9,9 +9,12 @@ jobs:
       - run: sudo chown -R circleci:circleci /usr/local/bin
       - run: sudo chown -R circleci:circleci /usr/local/lib/python3.7/site-packages
       - run:
+          name: Setup Environment Variables
+          command:
+            echo 'export TAG=v0.1.$CIRCLE_BUILD_NUM' >> $BASH_ENV
+      - run:
           name: Build package
           command: |
-            TAG=v0.1.$CIRCLE_BUILD_NUM
             python setup.py sdist
       - run:
           name: Upload package
