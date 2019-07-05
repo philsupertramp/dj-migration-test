@@ -9,8 +9,9 @@ django>=1.10
 ```
 
 # Setup
+`pip install dj-migration-test`
 
-# Example
+# Usage
 
 For examples see the [examples](/examples) directory
 
