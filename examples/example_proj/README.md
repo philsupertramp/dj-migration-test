@@ -1,4 +1,4 @@
-### Example project
+### Example project 1
 
 #### Model:
 `TestModelA`

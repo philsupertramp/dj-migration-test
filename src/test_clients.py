@@ -3,6 +3,8 @@ from django.db import connection
 from django.db.migrations.executor import MigrationExecutor
 from django.test import TransactionTestCase
 
+from src.exceptions import AppNotFound
+
 
 class MigrationTestCase(TransactionTestCase):
     """
@@ -29,7 +31,10 @@ class MigrationTestCase(TransactionTestCase):
         return self._executor.loader.project_state(migration)
 
     def _get_migration_states(self):
-        migrate_to = self._executor.loader.get_migration(*self.migrate_to)
+        try:
+            migrate_to = self._executor.loader.get_migration(*self.migrate_to)
+        except KeyError:
+            raise AppNotFound()
         if not self.migrate_from:
             migrate_from = migrate_to.dependencies
         else:
@@ -48,7 +53,7 @@ class MigrationTestCase(TransactionTestCase):
         old_state = self._perform_migration(migrate_from)
 
         # prepare data for testing based on old state
-        self.setUpDataBeforeMigration(old_state.apps)
+        self.setUpDataBeforeMigration(self, old_state.apps)
 
         # reload graph
         self._executor.loader.build_graph()
@@ -56,7 +61,8 @@ class MigrationTestCase(TransactionTestCase):
         # Run the migration to perform tests on
         self.apps = self._perform_migration(migrate_to).apps
 
-    def setUpDataBeforeMigration(self, apps):  # noqa: N802
+    @staticmethod
+    def setUpDataBeforeMigration(test_instance, apps):  # noqa: N802
         """Create your testing data here.
         Use :attr apps: to work with pre-migration models.
 
