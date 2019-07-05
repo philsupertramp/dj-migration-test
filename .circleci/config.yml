@@ -60,7 +60,19 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - build-v1.10
-      - build-v2.0
-      - build-v2.1
-      - build-v2.2
+      - build-v1.10:
+          filters:
+            branches:
+              only: master
+      - build-v2.0:
+          filters:
+            branches:
+              only: master
+      - build-v2.1:
+          filters:
+            branches:
+              only: master
+      - build-v2.2:
+          filters:
+            branches:
+              only: master
