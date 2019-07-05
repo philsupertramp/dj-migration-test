@@ -11,8 +11,8 @@ jobs:
       - run:
           name: Build package
           command: |
-          TAG=v0.1.$CIRCLE_BUILD_NUM
-          python setup.py sdist
+            TAG=v0.1.$CIRCLE_BUILD_NUM
+            python setup.py sdist
       - run:
           name: Upload package
           command: |
