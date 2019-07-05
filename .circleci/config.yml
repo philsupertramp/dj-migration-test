@@ -16,7 +16,7 @@ jobs:
           name: Execute test suite
           command:
             python -m unittest tests
-  build-v2.2:
+  test-django-v2.2:
     machine:
       docker_layer_caching: true
     steps:
@@ -27,10 +27,10 @@ jobs:
             echo 'export TAG=0.1.$CIRCLE_BUILD_NUM' >> $BASH_ENV
             echo 'export DJ_VERSION=2.2.3' >> $BASH_ENV
       - run: |
-          docker build -t dj-migration-test/example_proj:$TAG ./examples/example_proj/. --build-arg DJ_VERSION=${DJ_VERSION}
+          docker build -t dj-migration-test/example_proj:$TAG ./examples/example_proj/. --test-arg DJ_VERSION=${DJ_VERSION}
       - run: |
           docker run dj-migration-test/example_proj:$TAG python /code/manage.py test
-  build-v2.1:
+  test-django-v2.1:
     machine:
       docker_layer_caching: true
     steps:
@@ -41,10 +41,10 @@ jobs:
             echo 'export TAG=0.1.$CIRCLE_BUILD_NUM' >> $BASH_ENV
             echo 'export DJ_VERSION=2.1' >> $BASH_ENV
       - run: |
-          docker build -t dj-migration-test/example_proj:$TAG ./examples/example_proj/. --build-arg DJ_VERSION=${DJ_VERSION}
+          docker build -t dj-migration-test/example_proj:$TAG ./examples/example_proj/. --test-arg DJ_VERSION=${DJ_VERSION}
       - run: |
           docker run dj-migration-test/example_proj:$TAG python /code/manage.py test
-  build-v2.0:
+  test-django-v2.0:
     machine:
       docker_layer_caching: true
     steps:
@@ -55,10 +55,10 @@ jobs:
             echo 'export TAG=0.1.$CIRCLE_BUILD_NUM' >> $BASH_ENV
             echo 'export DJ_VERSION=2.0' >> $BASH_ENV
       - run: |
-          docker build -t dj-migration-test/example_proj:$TAG ./examples/example_proj/. --build-arg DJ_VERSION=${DJ_VERSION}
+          docker build -t dj-migration-test/example_proj:$TAG ./examples/example_proj/. --test-arg DJ_VERSION=${DJ_VERSION}
       - run: |
           docker run dj-migration-test/example_proj:$TAG python /code/manage.py test
-  build-v1.10:
+  test-django-v1.10:
     machine:
       docker_layer_caching: true
     steps:
@@ -69,7 +69,7 @@ jobs:
             echo 'export TAG=0.1.$CIRCLE_BUILD_NUM' >> $BASH_ENV
             echo 'export DJ_VERSION=1.10' >> $BASH_ENV
       - run: |
-          docker build -t dj-migration-test/example_proj:$TAG ./examples/example_proj/. --build-arg DJ_VERSION=${DJ_VERSION}
+          docker build -t dj-migration-test/example_proj:$TAG ./examples/example_proj/. --test-arg DJ_VERSION=${DJ_VERSION}
       - run: |
           docker run dj-migration-test/example_proj:$TAG python /code/manage.py test
 workflows:
@@ -77,19 +77,19 @@ workflows:
   build_and_test:
     jobs:
       - test
-      - build-v1.10:
+      - test-django-v1.10:
           filters:
             branches:
               only: master
-      - build-v2.0:
+      - test-django-v2.0:
           filters:
             branches:
               only: master
-      - build-v2.1:
+      - test-django-v2.1:
           filters:
             branches:
               only: master
-      - build-v2.2:
+      - test-django-v2.2:
           filters:
             branches:
               only: master
