@@ -114,5 +114,10 @@ workflows:
             branches:
               only: master
   upload:
+    requires:
+      build_and_test
+    filters:
+      branches:
+        only: master
     jobs:
       - upload
