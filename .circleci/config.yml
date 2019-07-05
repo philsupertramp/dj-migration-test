@@ -100,25 +100,33 @@ workflows:
   build_and_test:
     jobs:
       - test
-      - test-django-v1.10:
-          filters:
-            branches:
-              only: master
-      - test-django-v2.0:
-          filters:
-            branches:
-              only: master
-      - test-django-v2.1:
-          filters:
-            branches:
-              only: master
-      - test-django-v2.2:
-          filters:
-            branches:
-              only: master
       - upload:
           filters:
             branches:
               only: master
           requires:
             - test
+      - test-django-v1.10:
+          filters:
+            branches:
+              only: master
+          requires:
+            - upload
+      - test-django-v2.0:
+          filters:
+            branches:
+              only: master
+          requires:
+            - upload
+      - test-django-v2.1:
+          filters:
+            branches:
+              only: master
+          requires:
+            - upload
+      - test-django-v2.2:
+          filters:
+            branches:
+              only: master
+          requires:
+            - upload
