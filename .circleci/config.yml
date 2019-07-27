@@ -38,7 +38,7 @@ jobs:
       - run:
           name: Execute test suite
           command:
-            python -m unittest tests
+            coverage run -m unittest tests
   test-django-v2.2:
     machine:
       docker_layer_caching: true
