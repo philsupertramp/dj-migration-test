@@ -24,7 +24,12 @@ class MigrationTestCase(TransactionTestCase):
 
     @property
     def app(self):
-        return apps.get_containing_app_config(self.__module__).name.split('.')[-1]
+        try:
+            return apps.get_containing_app_config(self.__module__).name.split('.')[-1]
+        except AttributeError:
+            raise AppNotFound()
+        finally:
+            return None
 
     def _perform_migration(self, migration):
         self._executor.migrate(migration)

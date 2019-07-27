@@ -73,12 +73,33 @@ class PropertyTestCase(DjangoTestCase):
         cls.test_case.migrate_to = ('tests', '0003_remove_testobja_name')
         cls.test_case.setUpDataBeforeMigration = setUpDataBeforeMigration
 
+
+class FirstPropertyTestCase(PropertyTestCase):
     def test_apps_attribute(self):
         self.test_case.setUp()
         apps = self.test_case.apps
 
         self.assertTrue(apps.is_installed('tests'))
         self.assertIn('tests', apps.all_models)
+
+
+class SecondPropertyTestCase(PropertyTestCase):
+    def test_app_property(self):
+        self.test_case.setUp()
+        app = self.test_case.app
+
+        self.assertEqual(app, None)
+
+
+class MigrationNotImplementedSetupStep(DjangoTestCase):
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls.test_case = MigrationTestCase()
+        cls.test_case.migrate_to = ('tests', '0003_remove_testobja_name')
+
+    def test_exception(self):
+        with self.assertRaises(NotImplementedError):
+            self.test_case.setUp()
 
 
 class MigrationExecutionTestCase(DjangoTestCase):
