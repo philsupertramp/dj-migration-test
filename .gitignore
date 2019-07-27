@@ -3,3 +3,6 @@ __pycache__
 dist/
 
 db.sqlite3
+
+.coverage
+coverage_html_report/
