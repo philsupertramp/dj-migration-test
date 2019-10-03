@@ -5,12 +5,15 @@ jobs:
     name: Run dev tests
     runs-on: ubuntu-18.04
     steps:
-      - name: List directory
+      - uses: actions/checkout@v1
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+      - name: Install dependencies
         run: |
-          ls -la
-      - name: Install requirements
-        run: |
-          sudo pip install -r tests/requirements.txt
+          python -m pip install --upgrade pip
+          pip install -r tests/requirements.txt
       - name: Execute test suite
         run: |
           coverage run -m unittest tests &&
