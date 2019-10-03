@@ -5,6 +5,9 @@ jobs:
     name: Run dev tests
     runs-on: ubuntu-18.04
     steps:
+      - name: List directory
+        run: |
+          ls -la
       - name: Install requirements
         run: |
           sudo pip install -r tests/requirements.txt
