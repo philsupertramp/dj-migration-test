@@ -25,3 +25,9 @@ jobs:
         run: |
           docker build -t dj-migration-test/example_proj:$TAG ./examples/example_proj/. --build-arg DJ_VERSION=${DJ_VERSION}
           docker run dj-migration-test/example_proj:$TAG python /code/manage.py test
+      - name: Django==3.0
+        env:
+          DJ_VERSION: 3.0
+        run: |
+          docker build -t dj-migration-test/example_proj:$TAG ./examples/example_proj/. --build-arg DJ_VERSION=${DJ_VERSION}
+          docker run dj-migration-test/example_proj:$TAG python /code/manage.py test
