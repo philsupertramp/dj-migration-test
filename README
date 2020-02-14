@@ -5,7 +5,7 @@ Django migration test module.
 # Requirements
 
 ```text
-django>=1.10
+django>=2.2.0
 ```
 
 # Setup
