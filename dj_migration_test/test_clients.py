@@ -38,15 +38,6 @@ class MigrationTestCase(TransactionTestCase):
         return self._executor.loader.project_state(migration)
 
     def _get_migration_states(self):
-        if self.__settings.DJANGO_VERSION.startswith('3.0'):
-            return self._get_migration_states_v3()
-        elif self.__settings.DJANGO_VERSION.startswith('2.2'):
-            return self._get_migration_states_v2()
-
-    def _get_migration_states_v3(self):
-        return self._get_migration_states_v2()
-
-    def _get_migration_states_v2(self):
         try:
             migrate_to = self._executor.loader.get_migration(*self.migrate_to)
         except KeyError:
