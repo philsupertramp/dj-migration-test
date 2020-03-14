@@ -3,6 +3,7 @@ from django.db import connection
 from django.db.migrations.executor import MigrationExecutor
 from django.test import TransactionTestCase
 
+from dj_migration_test.config import Settings
 from dj_migration_test.exceptions import AppNotFound
 
 
@@ -19,6 +20,7 @@ class MigrationTestCase(TransactionTestCase):
     And implement the method `setUpDataBeforeMigration` which gives you the possibility to create database entries
     in state of the migration prior to `migration_to`
     """
+    __settings = Settings()
     migrate_from = None
     migrate_to = None
 
