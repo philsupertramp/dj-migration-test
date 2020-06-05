@@ -18,7 +18,7 @@ setup(
     download_url=f'https://github.com/philsupertramp/dj-migration-test/archive/{os.environ.get("TAG", "v0.2.1")}.tar.gz',
     keywords=['Django', 'Testing', 'Database'],
     install_requires=[
-        'django>=2.2.11'
+        'django>=2.2.13'
     ],
     classifiers=[
         'Development Status :: 4 - Beta',
