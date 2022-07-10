@@ -19,12 +19,7 @@ jobs:
         run: |
           docker build -t dj-migration-test/example_proj:$TAG ./examples/example_proj/. --build-arg DJ_VERSION=${DJ_VERSION}
           docker run dj-migration-test/example_proj:$TAG ./manage.py test
-      - name: Django==2.0
-        env:
-          DJ_VERSION: 2.0
-        run: |
-          docker build -t dj-migration-test/example_proj:$TAG ./examples/example_proj/. --build-arg DJ_VERSION=${DJ_VERSION}
-          docker run dj-migration-test/example_proj:$TAG ./manage.py test
+
   test-dj-3-versions:
     name: Test Django versions support
     runs-on: ubuntu-18.04
@@ -32,9 +27,35 @@ jobs:
       TAG: 0.1.${{ github.sha }}
     steps:
       - uses: actions/checkout@v1
-      - name: Django==3.0.4
+      - name: Django==3.1.14
         env:
-          DJ_VERSION: 3.0.4
+          DJ_VERSION: 3.1.14
+        run: |
+          docker build -t dj-migration-test/example_proj_django_3:$TAG ./examples/example_proj_django_3/. --build-arg DJ_VERSION=${DJ_VERSION}
+          docker run dj-migration-test/example_proj_django_3:$TAG ./manage.py test
+      - name: Django==3.0.14
+        env:
+          DJ_VERSION: 3.0.14
+        run: |
+          docker build -t dj-migration-test/example_proj_django_3:$TAG ./examples/example_proj_django_3/. --build-arg DJ_VERSION=${DJ_VERSION}
+          docker run dj-migration-test/example_proj_django_3:$TAG ./manage.py test
+      - name: Django==3.2.14
+        env:
+          DJ_VERSION: 3.2.14
+        run: |
+          docker build -t dj-migration-test/example_proj_django_3:$TAG ./examples/example_proj_django_3/. --build-arg DJ_VERSION=${DJ_VERSION}
+          docker run dj-migration-test/example_proj_django_3:$TAG ./manage.py test
+
+  test-dj-4-versions:
+    name: Test Django versions support
+    runs-on: ubuntu-18.04
+    env:
+      TAG: 0.1.${{ github.sha }}
+    steps:
+      - uses: actions/checkout@v1
+      - name: Django==4.0.6
+        env:
+          DJ_VERSION: 4.0.6
         run: |
           docker build -t dj-migration-test/example_proj_django_3:$TAG ./examples/example_proj_django_3/. --build-arg DJ_VERSION=${DJ_VERSION}
           docker run dj-migration-test/example_proj_django_3:$TAG ./manage.py test
