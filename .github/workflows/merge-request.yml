@@ -2,7 +2,7 @@ on: [pull_request]
 jobs:
   test-dj-3-versions:
     name: Test Django 3 versions support
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     env:
       TAG: 0.4.0.${{ github.sha }}
     steps:
@@ -16,7 +16,7 @@ jobs:
 
   test-dj-4-versions:
     name: Test Django 4 versions support
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     env:
       TAG: 0.4.0.${{ github.sha }}
     steps:
