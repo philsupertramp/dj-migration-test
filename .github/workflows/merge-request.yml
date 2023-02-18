@@ -4,7 +4,7 @@ jobs:
     name: Test Django 3 versions support
     runs-on: ubuntu-18.04
     env:
-      TAG: 0.2.${{ github.sha }}
+      TAG: 0.4.0.${{ github.sha }}
     steps:
       - uses: actions/checkout@v1
       - name: Django==3.2.18
@@ -18,7 +18,7 @@ jobs:
     name: Test Django 4 versions support
     runs-on: ubuntu-18.04
     env:
-      TAG: 0.2.${{ github.sha }}
+      TAG: 0.4.0.${{ github.sha }}
     steps:
       - uses: actions/checkout@v1
       - name: Django==4.0.10
