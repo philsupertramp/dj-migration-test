@@ -6,7 +6,7 @@ jobs:
     env:
       TAG: 0.4.0.${{ github.sha }}
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
       - name: Django==3.2.18
         env:
           DJ_VERSION: 3.2.18
@@ -20,7 +20,7 @@ jobs:
     env:
       TAG: 0.4.0.${{ github.sha }}
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
       - name: Django==4.0.10
         env:
           DJ_VERSION: 4.0.10
