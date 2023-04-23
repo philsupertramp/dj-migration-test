@@ -1,4 +1,5 @@
 import os
+import time
 from unittest import TestCase
 
 import django
@@ -126,9 +127,11 @@ class MigrationExecutionTestCase(DjangoTestCase):
 
         # backward
         self.test_case._perform_migration(migrate_from)
+        time.sleep(1)
 
         # forward
         self.test_case._perform_migration(migrate_to)
+        time.sleep(1)
 
         # explicit
         self.test_case._perform_migration([('tests', '0002_auto_20190703_1731')])
