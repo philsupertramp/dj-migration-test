@@ -7,7 +7,7 @@ with open('README', 'r') as fh:
 setup(
     name='dj-migration-test',
     packages=['dj_migration_test'],
-    version=os.environ.get('TAG', 'v0.4.0'),
+    version=os.environ.get('TAG', 'v0.4.1'),
     license='MIT',
     description='Django migration test module',
     long_description=long_description,
@@ -15,7 +15,7 @@ setup(
     author='Philipp Zettl',
     author_email='philipp.zettl@godesteem.de',
     url='https://github.com/philsupertramp/dj-migration-test',
-    download_url=f'https://github.com/philsupertramp/dj-migration-test/archive/{os.environ.get("TAG", "v0.4.0")}.tar.gz',
+    download_url=f'https://github.com/philsupertramp/dj-migration-test/archive/{os.environ.get("TAG", "v0.4.1")}.tar.gz',
     keywords=['Django', 'Testing', 'Database'],
     install_requires=[
         'django>=3.2,<4.2'
